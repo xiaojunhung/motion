@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4D5370F096F7FA39DF90DF53AE13A747C07573C3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B8161DB35568E0366E3B2A3617C505CFC6D2299E" : 9223372036854775807,
+    "4D5370F096F7FA39DF90DF53AE13A747C07573C3" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "68CC5AF0-1F71-4B68-9E02-F8AEEADACE65",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B8161DB35568E0366E3B2A3617C505CFC6D2299E" : "motion\/motion\/",
+    "4D5370F096F7FA39DF90DF53AE13A747C07573C3" : "motion\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "motion",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "motion.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xiaojunhung\/motion2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4D5370F096F7FA39DF90DF53AE13A747C07573C3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xiaojunhung\/motion.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B8161DB35568E0366E3B2A3617C505CFC6D2299E"
+    }
+  ]
+}

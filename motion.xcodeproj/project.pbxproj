@@ -12,6 +12,8 @@
 		6324D4AC1E459A4200DBA759 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AA1E459A4200DBA759 /* Main.storyboard */; };
 		6324D4AE1E459A4200DBA759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AD1E459A4200DBA759 /* Assets.xcassets */; };
 		6324D4B11E459A4200DBA759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AF1E459A4200DBA759 /* LaunchScreen.storyboard */; };
+		6335EF831E4C8FA4006C96FC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */; };
+		6335EF851E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,9 @@
 		6324D4AD1E459A4200DBA759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6324D4B01E459A4200DBA759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6324D4B21E459A4200DBA759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PedestrainTrackingDatabase.sqlite; sourceTree = "<group>"; };
+		6335EF861E4C90BB006C96FC /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6335EF831E4C8FA4006C96FC /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +46,7 @@
 			children = (
 				6324D4A51E459A4200DBA759 /* motion */,
 				6324D4A41E459A4200DBA759 /* Products */,
+				6335EF811E4C8FA4006C96FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +61,24 @@
 		6324D4A51E459A4200DBA759 /* motion */ = {
 			isa = PBXGroup;
 			children = (
+				6335EF861E4C90BB006C96FC /* Header.h */,
 				6324D4A61E459A4200DBA759 /* AppDelegate.swift */,
 				6324D4A81E459A4200DBA759 /* ViewController.swift */,
 				6324D4AA1E459A4200DBA759 /* Main.storyboard */,
 				6324D4AD1E459A4200DBA759 /* Assets.xcassets */,
 				6324D4AF1E459A4200DBA759 /* LaunchScreen.storyboard */,
 				6324D4B21E459A4200DBA759 /* Info.plist */,
+				6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */,
 			);
 			path = motion;
+			sourceTree = "<group>";
+		};
+		6335EF811E4C8FA4006C96FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6335EF851E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite in Resources */,
 				6324D4B11E459A4200DBA759 /* LaunchScreen.storyboard in Resources */,
 				6324D4AE1E459A4200DBA759 /* Assets.xcassets in Resources */,
 				6324D4AC1E459A4200DBA759 /* Main.storyboard in Resources */,
@@ -256,6 +274,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = motion/Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -269,6 +288,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = motion/Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
