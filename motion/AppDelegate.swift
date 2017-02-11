@@ -18,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //let fm = FileManager.default
+        let fm = FileManager.default
         let src = Bundle.main.path(forResource: "PedestrainTrackingDatabase", ofType: "sqlite")
-        //let dst = NSHomeDirectory() + "/PedestrainTrackingDatabase.sqlite"
+        let dst = NSHomeDirectory() + "/Documents/PedestrainTrackingDatabase.sqlite"
         
-        //if !fm.fileExists(atPath: dst){
-        //    try! fm.copyItem(atPath: src!, toPath: dst)
-        //}
+        if !fm.fileExists(atPath: dst){
+            try! fm.copyItem(atPath: src!, toPath: dst)
+        }
         
         if sqlite3_open(src!, &db) == SQLITE_OK{
             print("資料庫連接成功")

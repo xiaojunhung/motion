@@ -25,7 +25,7 @@
 		6324D4B01E459A4200DBA759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6324D4B21E459A4200DBA759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PedestrainTrackingDatabase.sqlite; sourceTree = "<group>"; };
+		6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = PedestrainTrackingDatabase.sqlite; path = motion/PedestrainTrackingDatabase.sqlite; sourceTree = "<group>"; };
 		6335EF861E4C90BB006C96FC /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,6 +44,7 @@
 		6324D49A1E459A4200DBA759 = {
 			isa = PBXGroup;
 			children = (
+				65BB98561E4D51D5005D1CD7 /* Documents */,
 				6324D4A51E459A4200DBA759 /* motion */,
 				6324D4A41E459A4200DBA759 /* Products */,
 				6335EF811E4C8FA4006C96FC /* Frameworks */,
@@ -68,7 +69,6 @@
 				6324D4AD1E459A4200DBA759 /* Assets.xcassets */,
 				6324D4AF1E459A4200DBA759 /* LaunchScreen.storyboard */,
 				6324D4B21E459A4200DBA759 /* Info.plist */,
-				6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */,
 			);
 			path = motion;
 			sourceTree = "<group>";
@@ -79,6 +79,14 @@
 				6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65BB98561E4D51D5005D1CD7 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,7 +116,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = DavidAppCoda;
 				TargetAttributes = {
 					6324D4A21E459A4200DBA759 = {
@@ -196,8 +204,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -241,8 +251,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -261,6 +273,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

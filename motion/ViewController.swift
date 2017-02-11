@@ -69,6 +69,10 @@ class ViewController: UIViewController {
             StartOrStopButton.setTitle("Start", for: .normal)
         }
     }
+    @IBAction func ShowPlistOnClick(_ sender: Any) {
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
