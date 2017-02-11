@@ -10,10 +10,8 @@ import UIKit
 import CoreMotion
 
 class ViewController: UIViewController {
-    @IBOutlet weak var attitudeX: UILabel!
-    @IBOutlet weak var attitudeY: UILabel!
-    @IBOutlet weak var attitudeZ: UILabel!
     @IBOutlet weak var StartOrStopButton: UIButton!
+    @IBOutlet weak var MyLabel: UILabel!
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -25,19 +23,15 @@ class ViewController: UIViewController {
     var AttX:Double = 0.0
     var AttY:Double = 0.0
     var AttZ:Double = 0.0
+    var mySpeed : Double = 0.0
     var myTimer : Timer = Timer()
     
     func updateAttitude() {
-        count += 1
-        if count % 1 == 0 {
-            self.attitudeX.text="\(AccX)"
-            self.attitudeY.text="\(AccY)"
-            self.attitudeZ.text="\(AccZ)"
-            
-            if AttX > -1 && AttX < 1 && AttY > -1 && AttY < 1{
-                
-            }
+        if AttY > 80 && AttY < 90 {
+            mySpeed = mySpeed+AccZ
         }
+        let sp = NSString(format:"%.2f",mySpeed)
+        MyLabel.text = sp as String
     }
     
     override func viewDidLoad() {
@@ -69,7 +63,9 @@ class ViewController: UIViewController {
             StartOrStopButton.setTitle("Start", for: .normal)
         }
     }
+    
     @IBAction func ShowPlistOnClick(_ sender: Any) {
+        
     }
     
     
