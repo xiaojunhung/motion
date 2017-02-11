@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var StartOrStopButton: UIButton!
     @IBOutlet weak var MyLabel: UILabel!
     
+    @IBOutlet weak var status: UILabel!
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
     let mm = CMMotionManager()
@@ -27,10 +28,11 @@ class ViewController: UIViewController {
     var myTimer : Timer = Timer()
     
     func updateAttitude() {
-        if AttY > 80 && AttY < 90 {
-            mySpeed = mySpeed+AccZ
+        status.text="AttPitch:\(AttX)"
+        if self.AttX > 1.4 && self.AttX < 1.6 {
+            self.mySpeed = self.mySpeed+self.AccZ * 9.81
         }
-        let sp = NSString(format:"%.2f",mySpeed)
+        let sp = NSString(format:"%.2f",self.mySpeed)
         MyLabel.text = sp as String
     }
     
@@ -47,6 +49,8 @@ class ViewController: UIViewController {
                 self.AttX=attitude.pitch
                 self.AttY=attitude.roll
                 self.AttZ=attitude.yaw
+                
+                
             }
         }
     }
