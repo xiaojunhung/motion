@@ -12,8 +12,6 @@
 		6324D4AC1E459A4200DBA759 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AA1E459A4200DBA759 /* Main.storyboard */; };
 		6324D4AE1E459A4200DBA759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AD1E459A4200DBA759 /* Assets.xcassets */; };
 		6324D4B11E459A4200DBA759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AF1E459A4200DBA759 /* LaunchScreen.storyboard */; };
-		6335EF831E4C8FA4006C96FC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */; };
-		6335EF851E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */; };
 		657C34C31E50317000F988F3 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C34C21E50317000F988F3 /* MagViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +24,6 @@
 		6324D4B01E459A4200DBA759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6324D4B21E459A4200DBA759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = PedestrainTrackingDatabase.sqlite; path = motion/PedestrainTrackingDatabase.sqlite; sourceTree = "<group>"; };
-		6335EF861E4C90BB006C96FC /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		657C34C21E50317000F988F3 /* MagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6335EF831E4C8FA4006C96FC /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +59,6 @@
 		6324D4A51E459A4200DBA759 /* motion */ = {
 			isa = PBXGroup;
 			children = (
-				6335EF861E4C90BB006C96FC /* Header.h */,
 				6324D4A61E459A4200DBA759 /* AppDelegate.swift */,
 				6324D4A81E459A4200DBA759 /* ViewController.swift */,
 				6324D4AA1E459A4200DBA759 /* Main.storyboard */,
@@ -87,7 +81,6 @@
 		65BB98561E4D51D5005D1CD7 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */,
 			);
 			name = Documents;
 			sourceTree = "<group>";
@@ -152,7 +145,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6335EF851E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite in Resources */,
 				6324D4B11E459A4200DBA759 /* LaunchScreen.storyboard in Resources */,
 				6324D4AE1E459A4200DBA759 /* Assets.xcassets in Resources */,
 				6324D4AC1E459A4200DBA759 /* Main.storyboard in Resources */,
@@ -291,7 +283,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = motion/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -305,7 +297,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = motion/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

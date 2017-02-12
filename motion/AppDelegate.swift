@@ -12,27 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var db: OpaquePointer? = nil
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let fm = FileManager.default
-        let src = Bundle.main.path(forResource: "PedestrainTrackingDatabase", ofType: "sqlite")
-        let dst = NSHomeDirectory() + "/Documents/PedestrainTrackingDatabase.sqlite"
-        
-        if !fm.fileExists(atPath: dst){
-            try! fm.copyItem(atPath: src!, toPath: dst)
-        }
-        
-        if sqlite3_open(src!, &db) == SQLITE_OK{
-            print("資料庫連接成功")
-        }else{
-            print("資料庫連接失敗")
-            db = nil
-        }
-        
         return true
     }
 
@@ -56,11 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        guard db != nil else {
-            return
-        }
         
-        sqlite3_close(db!)
     }
 
 
