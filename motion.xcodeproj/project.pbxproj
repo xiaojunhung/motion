@@ -14,6 +14,7 @@
 		6324D4B11E459A4200DBA759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6324D4AF1E459A4200DBA759 /* LaunchScreen.storyboard */; };
 		6335EF831E4C8FA4006C96FC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */; };
 		6335EF851E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */; };
+		657C34C31E50317000F988F3 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C34C21E50317000F988F3 /* MagViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		6335EF821E4C8FA4006C96FC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6335EF841E4C9030006C96FC /* PedestrainTrackingDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = PedestrainTrackingDatabase.sqlite; path = motion/PedestrainTrackingDatabase.sqlite; sourceTree = "<group>"; };
 		6335EF861E4C90BB006C96FC /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		657C34C21E50317000F988F3 /* MagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				6324D4A61E459A4200DBA759 /* AppDelegate.swift */,
 				6324D4A81E459A4200DBA759 /* ViewController.swift */,
 				6324D4AA1E459A4200DBA759 /* Main.storyboard */,
+				657C34C21E50317000F988F3 /* MagViewController.swift */,
 				6324D4AD1E459A4200DBA759 /* Assets.xcassets */,
 				6324D4AF1E459A4200DBA759 /* LaunchScreen.storyboard */,
 				6324D4B21E459A4200DBA759 /* Info.plist */,
@@ -165,6 +168,7 @@
 			files = (
 				6324D4A91E459A4200DBA759 /* ViewController.swift in Sources */,
 				6324D4A71E459A4200DBA759 /* AppDelegate.swift in Sources */,
+				657C34C31E50317000F988F3 /* MagViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
