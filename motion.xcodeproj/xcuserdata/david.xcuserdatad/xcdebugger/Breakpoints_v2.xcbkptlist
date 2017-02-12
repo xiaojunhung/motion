@@ -15,9 +15,10 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
+                  symbolName = "ImageLoaderMegaDylib::markAllbound(ImageLoader::LinkContext const&amp;)"
                   moduleName = "dyld"
                   usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
+                  offsetFromSymbolStart = "128">
                </Location>
             </Locations>
          </BreakpointContent>

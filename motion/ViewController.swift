@@ -69,15 +69,16 @@ class ViewController: UIViewController {
         myitem["MagX"] = MagX
         myitem["MagY"] = MagY
         myitem["MagZ"] = MagZ
-        mydic[currentTime] = myitem
+        mydic[String(mydic.count)] = myitem
         myitem = [:]
         
         
-        if myitem.count == 11{
+        if mydic.count == 11{
             //Post
 //            let urlsrt = ""//在這裡輸入網址
 //            let url = URL(string: urlsrt)
-//            let str = mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}")
+            let str = mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}")
+            print(str)
 //            var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
 //            request.httpBody = str.data(using: .utf8)
 //            request.httpMethod = "POST"
@@ -88,8 +89,8 @@ class ViewController: UIViewController {
 //                if let data = data {
 //                    let html = String(data:data, encoding: .utf8)
 //                    print(html!)
-//                    mydic = [:]
-//                    mydic["myID"] = myIphoneID
+                    mydic = [:]
+                    mydic["myID"] = myIphoneID
 //                }
 //            }
 //            dataTask.resume()

@@ -58,7 +58,8 @@ class MagViewController: UIViewController {
         //Post
 //        let urlsrt = ""//在這裡輸入網址
 //        let url = URL(string: urlsrt)
-//        let str = mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}")
+        let str = mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}")
+        print(str)
 //        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
 //        request.httpBody = str.data(using: .utf8)
 //        request.httpMethod = "POST"
