@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     var myIphoneID : String = ""
     var currentTime : String = ""
     var mydic = [String:Any]()
+    var TrackingID="";
     
     func updateAttitude() {
         status.text="Current Time:\(currentTime)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)"
@@ -60,6 +61,7 @@ class ViewController: UIViewController {
         while second.characters.count < 2 {
             second = "0"+second
         }
+        self.mydic["TrackingID"]=self.TrackingID
         currentTime = "\(year)-\(month)-\(day) \(hour):\(minute):\(second)"
         var myitem = [String:Any]()
         myitem["CurrentTime"] = currentTime
@@ -72,28 +74,8 @@ class ViewController: UIViewController {
         mydic[String(mydic.count)] = myitem
         myitem = [:]
         
-        
         if mydic.count == 11{
-            //Post
-//            let urlsrt = ""//在這裡輸入網址
-//            let url = URL(string: urlsrt)
-            let str = mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}")
-            print(str)
-//            var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
-//            request.httpBody = str.data(using: .utf8)
-//            request.httpMethod = "POST"
-//            
-//            let config = URLSessionConfiguration.default
-//            let session = URLSession(configuration: config)
-//            let dataTask = session.dataTask(with: request) { (data, response, error) in
-//                if let data = data {
-//                    let html = String(data:data, encoding: .utf8)
-//                    print(html!)
-                    mydic = [:]
-                    mydic["myID"] = myIphoneID
-//                }
-//            }
-//            dataTask.resume()
+            PostAcc()
         }
     }
     //載入事件
@@ -122,7 +104,6 @@ class ViewController: UIViewController {
             }
         }
         myIphoneID = (UIDevice.current.identifierForVendor?.uuidString)!
-        mydic["myID"] = myIphoneID
     }
     
     @IBAction func StartOrStop(_ sender: Any) {
@@ -133,7 +114,11 @@ class ViewController: UIViewController {
                                            userInfo: nil,
                                            repeats: true)
             StartOrStopButton.setTitle("Stop", for: .normal)
+            mydic=[:]
+            mydic["myID"] = myIphoneID
+            getTrackingID()
         }else{
+            PostAcc()
             myTimer.invalidate()
             StartOrStopButton.setTitle("Start", for: .normal)
         }
@@ -143,6 +128,46 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    //取得本次的追蹤代碼
+    func getTrackingID() {
+            let urlsrt = "http://192.168.2.189/pedtac/php/getTrackingID.php"//在這裡輸入網址
+            let url = URL(string: urlsrt)
+            var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+            request.httpBody = "".data(using: .utf8)
+            request.httpMethod = "POST"
+            let config = URLSessionConfiguration.default
+            let session = URLSession(configuration: config)
+            let dataTask = session.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    let html = String(data:data, encoding: .utf8)
+                    let res = html!
+                    let resarray = res.components(separatedBy: "\n")
+                    self.TrackingID=resarray[resarray.count-1]
+                }
+            }
+            dataTask.resume()
+    }
+    
+    func PostAcc() {
+        let urlsrt = "http://192.168.2.189/pedtac/php/insertAcc.php"//在這裡輸入網址
+        let url = URL(string: urlsrt)
+        let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
+        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+        request.httpBody = jsonData
+        request.httpMethod = "POST"
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if let data = data {
+                self.mydic = [:]
+                self.mydic["myID"] = self.myIphoneID
+            }
+        }
+        dataTask.resume()
+    }
+    
     @IBAction func ShowPlistOnClick(_ sender: Any) {
         
     }

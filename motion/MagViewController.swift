@@ -56,24 +56,22 @@ class MagViewController: UIViewController {
         mydic["X"] = x
         mydic["Y"] = y
         //Post
-//        let urlsrt = ""//在這裡輸入網址
-//        let url = URL(string: urlsrt)
-        let str = mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}")
-        print(str)
-//        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
-//        request.httpBody = str.data(using: .utf8)
-//        request.httpMethod = "POST"
-//        
-//        let config = URLSessionConfiguration.default
-//        let session = URLSession(configuration: config)
-//        let dataTask = session.dataTask(with: request) { (data, response, error) in
-//        if let data = data {
-//                self.showmsg(msg: "已送出")
-//                let html = String(data:data, encoding: .utf8)
-//                print(html!)
-//            }
-//        }
-//        dataTask.resume()
+        let urlsrt = "http://192.168.2.189/pedtac/php/insertMag.php"//在這裡輸入網址
+        let url = URL(string: urlsrt)
+        let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
+        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+        if let data = data {
+                self.showmsg(msg: "已送出")
+                let html = String(data:data, encoding: .utf8)
+                print(html!)
+            }
+        }
+        dataTask.resume()
     }
     
     func showmsg(msg : String) {
