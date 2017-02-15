@@ -1,7 +1,7 @@
 <?php
 $servername="localhost";
-$username="pedtacuser";
-$password="9802874";
+$username="16631101";
+$password="0813";
 $database="pedtacdb";
 
 //建立連線

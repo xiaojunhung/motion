@@ -131,7 +131,7 @@ class ViewController: UIViewController {
     
     //取得本次的追蹤代碼
     func getTrackingID() {
-            let urlsrt = "http://192.168.2.189/pedtac/php/getTrackingID.php"//在這裡輸入網址
+            let urlsrt = "http://120.119.80.10/pedtac/php/getTrackingID.php"//在這裡輸入網址
             let url = URL(string: urlsrt)
             var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
             request.httpBody = "".data(using: .utf8)
@@ -150,7 +150,7 @@ class ViewController: UIViewController {
     }
     
     func PostAcc() {
-        let urlsrt = "http://192.168.2.189/pedtac/php/insertAcc.php"//在這裡輸入網址
+        let urlsrt = "http://120.119.80.10/pedtac/php/insertAcc.php"//在這裡輸入網址
         let url = URL(string: urlsrt)
         let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
         var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)

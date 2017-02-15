@@ -56,7 +56,7 @@ class MagViewController: UIViewController {
         mydic["X"] = x
         mydic["Y"] = y
         //Post
-        let urlsrt = "http://192.168.2.189/pedtac/php/insertMag.php"//在這裡輸入網址
+        let urlsrt = "http://120.119.80.10/pedtac/php/insertMag.php"//在這裡輸入網址
         let url = URL(string: urlsrt)
         let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
         var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
