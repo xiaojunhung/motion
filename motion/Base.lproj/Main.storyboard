@@ -37,9 +37,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xje-wz-3wW">
-                                <rect key="frame" x="145" y="115" width="84" height="21"/>
+                                <rect key="frame" x="16" y="115" width="343" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="84" id="7gE-Hp-5zu"/>
+                                    <constraint firstAttribute="width" constant="343" id="7gE-Hp-5zu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

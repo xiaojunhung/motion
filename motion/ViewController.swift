@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
     let mm = CMMotionManager()
-    let lm = CLLocationManager()
+    let pedometer = CMPedometer()
     var count = 10
     var AccX:Double = 0.0
     var AccY:Double = 0.0
@@ -33,10 +33,15 @@ class ViewController: UIViewController {
     var myIphoneID : String = ""
     var currentTime : String = ""
     var mydic = [String:Any]()
-    var TrackingID="";
+    var TrackingID=""
+    var h:Int = 0
+    var m:Int = 0
+    var s:Int = 0
+    var nos:Int = 0
     
     func updateAttitude() {
-        status.text="Current Time:\(currentTime)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)"
+        status.text="Current Time:\(currentTime)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)\n步數:\(nos)"
+        
         let date = NSDate()
         let calendar = NSCalendar.current
         let year = String(calendar.component(.year, from: date as Date))
@@ -71,10 +76,11 @@ class ViewController: UIViewController {
         myitem["MagX"] = MagX
         myitem["MagY"] = MagY
         myitem["MagZ"] = MagZ
+        myitem["numberOfSteps"] = nos
         mydic[String(mydic.count)] = myitem
         myitem = [:]
         
-        if mydic.count == 11{
+        if mydic.count == 10001{
             PostAcc()
         }
     }
@@ -82,6 +88,7 @@ class ViewController: UIViewController {
     //先開啟DeviceMotion並將感測器的數值放入變數
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mm.startDeviceMotionUpdates(to: OperationQueue()) { (motion, error) in
             if let motion = motion {
                 let acc = motion.userAcceleration
@@ -106,17 +113,47 @@ class ViewController: UIViewController {
         myIphoneID = (UIDevice.current.identifierForVendor?.uuidString)!
     }
     
+    func startPedometerUpdates(){
+        guard CMPedometer.isStepCountingAvailable() else{
+            self.MyLabel.text = "目前的裝置不支援計步"
+            return
+        }
+        
+        let cal = Calendar.current
+        var comps = cal.dateComponents([.year, .month, .day], from: Date())
+        comps.hour = h
+        comps.minute = m
+        comps.second = s
+        let midnightOfToday = cal.date(from: comps)!
+        self.pedometer.startUpdates(from: midnightOfToday, withHandler: { pedometerData, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            if let numberOfSteps = pedometerData?.numberOfSteps{
+                self.nos = Int(numberOfSteps)
+            }
+        })
+    }
+    
     @IBAction func StartOrStop(_ sender: Any) {
         if StartOrStopButton.currentTitle == "Start"{
-            myTimer = Timer.scheduledTimer(timeInterval: 1,
+            myTimer = Timer.scheduledTimer(timeInterval: 0.0001,
                                            target: self,
                                            selector: #selector(self.updateAttitude),
                                            userInfo: nil,
                                            repeats: true)
+            let date = NSDate()
+            let calendar = NSCalendar.current
+            h = Int(calendar.component(.hour, from: date as Date))
+            m = Int(calendar.component(.minute, from: date as Date))
+            s = Int(calendar.component(.second, from: date as Date))
+            startPedometerUpdates()
             StartOrStopButton.setTitle("Stop", for: .normal)
             mydic=[:]
             mydic["myID"] = myIphoneID
             getTrackingID()
+            MyLabel.text=self.TrackingID
         }else{
             PostAcc()
             myTimer.invalidate()
@@ -153,6 +190,27 @@ class ViewController: UIViewController {
         let urlsrt = "http://120.119.80.10/pedtac/php/insertAcc.php"//在這裡輸入網址
         let url = URL(string: urlsrt)
         let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
+        print(mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}"))
+        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+        request.httpBody = jsonData
+        request.httpMethod = "POST"
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if let data = data {
+                self.mydic = [:]
+                self.mydic["myID"] = self.myIphoneID
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func Posttest(){
+        let urlsrt = "http://120.119.80.10/pedtac/php/insertAcc.php"//在這裡輸入網址
+        let url = URL(string: urlsrt)
+        let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
+        print(mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}"))
         var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
         request.httpBody = jsonData
         request.httpMethod = "POST"
