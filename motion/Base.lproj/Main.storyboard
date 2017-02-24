@@ -59,6 +59,7 @@
                                 <state key="normal" title="ShowList"/>
                                 <connections>
                                     <action selector="ShowPlistOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="geN-Ax-g9B"/>
+                                    <segue destination="Ek8-HP-eSH" kind="show" id="lvh-E2-EpK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -89,6 +90,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Huq-QW-qZH">
+            <objects>
+                <viewController id="Ek8-HP-eSH" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WhJ-Dr-OoB"/>
+                        <viewControllerLayoutGuide type="bottom" id="nyY-Tz-KR8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xOO-Ne-6U9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xlS-en-syI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137" y="1029"/>
         </scene>
         <!--Mag View Controller-->
         <scene sceneID="jDm-o2-75w">

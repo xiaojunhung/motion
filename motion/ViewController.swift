@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     var x : Double = 0.0
     var y : Double = 0.0
     var z : Double = 0.0
+    var attYaw : CGFloat = 0.0
+    var attPitch : CGFloat = 0.0
+    var attRoll : CGFloat = 0.0
     var myTimer : Timer = Timer()
     var myIphoneID : String = ""
     var currentTime : String = ""
@@ -40,7 +43,8 @@ class ViewController: UIViewController {
     var nos:Int = 0
     
     func updateAttitude() {
-        status.text="Current Time:\(currentTime)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)\n步數:\(nos)"
+        MyLabel.text=self.TrackingID
+        status.text="Current Time:\(currentTime)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)\nyaw:\(attYaw)\npitch:\(attPitch)\nroll:\(attRoll)\n步數:\(nos)"
         
         let date = NSDate()
         let calendar = NSCalendar.current
@@ -77,10 +81,13 @@ class ViewController: UIViewController {
         myitem["MagY"] = MagY
         myitem["MagZ"] = MagZ
         myitem["numberOfSteps"] = nos
+        myitem["Yaw"] = attYaw
+        myitem["Roll"] = attRoll
+        myitem["Pitch"] = attPitch
         mydic[String(mydic.count)] = myitem
         myitem = [:]
         
-        if mydic.count == 10001{
+        if mydic.count == 11{
             PostAcc()
         }
     }
@@ -100,6 +107,12 @@ class ViewController: UIViewController {
                 self.x = (acc.x*rot.m11 + acc.y*rot.m21 + acc.z*rot.m31)*9.81
                 self.y = (acc.x*rot.m12 + acc.y*rot.m22 + acc.z*rot.m32)*9.81
                 self.z = (acc.x*rot.m13 + acc.y*rot.m23 + acc.z*rot.m33)*9.81
+                
+                let att = motion.attitude
+                self.attYaw = CGFloat(-att.yaw * 2 / M_PI) * 90
+                self.attRoll = CGFloat(-att.roll * 2 / M_PI) * 90
+                self.attPitch = CGFloat(-att.pitch * 2 / M_PI) * 90
+                
             }
         }
         mm.startMagnetometerUpdates(to: OperationQueue()) { (data, error) in
@@ -138,7 +151,7 @@ class ViewController: UIViewController {
     
     @IBAction func StartOrStop(_ sender: Any) {
         if StartOrStopButton.currentTitle == "Start"{
-            myTimer = Timer.scheduledTimer(timeInterval: 0.0001,
+            myTimer = Timer.scheduledTimer(timeInterval: 0.5,
                                            target: self,
                                            selector: #selector(self.updateAttitude),
                                            userInfo: nil,
@@ -148,12 +161,13 @@ class ViewController: UIViewController {
             h = Int(calendar.component(.hour, from: date as Date))
             m = Int(calendar.component(.minute, from: date as Date))
             s = Int(calendar.component(.second, from: date as Date))
+            nos = 0
             startPedometerUpdates()
             StartOrStopButton.setTitle("Stop", for: .normal)
             mydic=[:]
             mydic["myID"] = myIphoneID
             getTrackingID()
-            MyLabel.text=self.TrackingID
+            
         }else{
             PostAcc()
             myTimer.invalidate()
@@ -190,27 +204,6 @@ class ViewController: UIViewController {
         let urlsrt = "http://120.119.80.10/pedtac/php/insertAcc.php"//在這裡輸入網址
         let url = URL(string: urlsrt)
         let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
-        print(mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}"))
-        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
-        request.httpBody = jsonData
-        request.httpMethod = "POST"
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                self.mydic = [:]
-                self.mydic["myID"] = self.myIphoneID
-            }
-        }
-        dataTask.resume()
-    }
-    
-    func Posttest(){
-        let urlsrt = "http://120.119.80.10/pedtac/php/insertAcc.php"//在這裡輸入網址
-        let url = URL(string: urlsrt)
-        let jsonData = try? JSONSerialization.data(withJSONObject: mydic)
-        print(mydic.description.replacingOccurrences(of: "[", with: "{").replacingOccurrences(of: "]", with: "}"))
         var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
         request.httpBody = jsonData
         request.httpMethod = "POST"
