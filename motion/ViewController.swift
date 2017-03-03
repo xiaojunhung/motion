@@ -41,10 +41,11 @@ class ViewController: UIViewController {
     var m:Int = 0
     var s:Int = 0
     var nos:Int = 0
+    var yaw: Double = 0
     
     func updateAttitude() {
         MyLabel.text=self.TrackingID
-        status.text="Current Time:\(currentTime)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)\nyaw:\(attYaw)\npitch:\(attPitch)\nroll:\(attRoll)\n步數:\(nos)"
+        status.text="Current Time:\(currentTime)\nyaw:\(yaw)\nid:\(myIphoneID)\nAccX:\(AccX)\nAccY:\(AccY)\nAccZ:\(AccZ)\nMagX:\(MagX)\nMagY:\(MagY)\nMagZ:\(MagZ)\nmyDic:\(mydic.count)\nx:\(x)\ny:\(y)\nz:\(z)\nyaw:\(attYaw)\npitch:\(attPitch)\nroll:\(attRoll)\n步數:\(nos)"
         
         let date = NSDate()
         let calendar = NSCalendar.current
@@ -84,6 +85,7 @@ class ViewController: UIViewController {
         myitem["Yaw"] = attYaw
         myitem["Roll"] = attRoll
         myitem["Pitch"] = attPitch
+        myitem["Rotz"] = yaw
         mydic[String(mydic.count)] = myitem
         myitem = [:]
         
@@ -95,7 +97,7 @@ class ViewController: UIViewController {
     //先開啟DeviceMotion並將感測器的數值放入變數
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mm.startGyroUpdates()
         mm.startDeviceMotionUpdates(to: OperationQueue()) { (motion, error) in
             if let motion = motion {
                 let acc = motion.userAcceleration
@@ -112,7 +114,7 @@ class ViewController: UIViewController {
                 self.attYaw = CGFloat(-att.yaw * 2 / M_PI) * 90
                 self.attRoll = CGFloat(-att.roll * 2 / M_PI) * 90
                 self.attPitch = CGFloat(-att.pitch * 2 / M_PI) * 90
-                
+                self.yaw=(self.mm.gyroData?.rotationRate.z)!
             }
         }
         mm.startMagnetometerUpdates(to: OperationQueue()) { (data, error) in

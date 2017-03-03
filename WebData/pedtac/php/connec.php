@@ -1,11 +1,7 @@
 <?php
-$servername="localhost";
-$username="16631101";
-$password="0813";
-$database="pedtacdb";
 
 //建立連線
-$con=new mysqli($server,$username,$password,$database);
+$con=new mysqli("localhost","16631101","0813","pedtacdb");
 if($con->connect_error){
     die("資料庫連線失敗：".$con->connect_error);
 }

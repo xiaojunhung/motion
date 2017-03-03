@@ -9,7 +9,7 @@ $jsonArray["TrackingID"]="";
 
 foreach($jsonArray as $data){
     if(!empty($data) and is_array($data)){
-        $sql=sprintf("INSERT INTO AccelerationData (AccX,AccY,AccZ,MagX,MagY,MagZ,PhoneDataTime,PhoneID,TrackingID,numofsteps,Yaw,Roll,Pitch) VALUES(%f,%f,%f,%f,%f,%f,'%s','%s','%s',%d,%f,%f,%f)",mysql_real_escape_string($data["X"]),mysql_real_escape_string($data["Y"]),mysql_real_escape_string($data["Z"]),mysql_real_escape_string($data["MagX"]),mysql_real_escape_string($data["MagY"]),mysql_real_escape_string($data["MagZ"]),mysql_real_escape_string($data["CurrentTime"]),mysql_real_escape_string($_phoneID),mysql_real_escape_string($_TrackingID),mysql_real_escape_string($data["numberOfSteps"]),mysql_real_escape_string($data["Yaw"]),mysql_real_escape_string($data["Roll"]),mysql_real_escape_string($data["Pitch"]));
+        $sql=sprintf("INSERT INTO AccelerationData (AccX,AccY,AccZ,MagX,MagY,MagZ,PhoneDataTime,PhoneID,TrackingID,numofsteps,Yaw,Roll,Pitch,Rotz) VALUES(%f,%f,%f,%f,%f,%f,'%s','%s','%s',%d,%f,%f,%f,%f)",mysql_real_escape_string($data["X"]),mysql_real_escape_string($data["Y"]),mysql_real_escape_string($data["Z"]),mysql_real_escape_string($data["MagX"]),mysql_real_escape_string($data["MagY"]),mysql_real_escape_string($data["MagZ"]),mysql_real_escape_string($data["CurrentTime"]),mysql_real_escape_string($_phoneID),mysql_real_escape_string($_TrackingID),mysql_real_escape_string($data["numberOfSteps"]),mysql_real_escape_string($data["Yaw"]),mysql_real_escape_string($data["Roll"]),mysql_real_escape_string($data["Pitch"]),mysql_real_escape_string($data["Rotz"]));
         if($con->query($sql)===true){
             
         }else {

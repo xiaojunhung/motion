@@ -11,7 +11,7 @@ if($result->num_rows > 0){
         $prerow=$row["TrackingID"];
     }
     $predate=substr($prerow,0,8);
-    $preindex=intval(substr($prerow,8));
+    $preindex=intval(substr($prerow,9));
     $preindex++;
     $TrackingID=$predate.$preindex;
 }else{
