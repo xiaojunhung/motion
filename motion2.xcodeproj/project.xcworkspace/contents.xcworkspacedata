@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:motion.xcodeproj">
+      location = "self:motion2.xcodeproj">
    </FileRef>
 </Workspace>

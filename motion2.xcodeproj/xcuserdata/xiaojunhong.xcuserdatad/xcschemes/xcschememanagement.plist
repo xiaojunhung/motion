@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>motion.xcscheme</key>
+		<key>motion2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6324D4A21E459A4200DBA759</key>
+		<key>65199EE31E5DD25C00C2C0CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
