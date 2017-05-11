@@ -18,14 +18,17 @@ class ViewController: UIViewController {
     let formatter = DateFormatter()
     var mydata = [String:Any]()
     var action:Int=0;
+    var myTimer : Timer = Timer()
+    var attYaw:CGFloat=0
+    var attRoll:CGFloat=0
+    var attPitch:CGFloat=0
+    var af:Double=0
+    var aw:Double=0
+    var count:Int=0
+    var d="";
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var af:Double=0
-        var aw:Double=0
-        var count:Int=0
-        
         
         formatter.dateFormat = "yyyy-M-d H:m:s"
         
@@ -36,32 +39,22 @@ class ViewController: UIViewController {
                 let acc = motion.userAcceleration
                 let gyro = motion.rotationRate
                 let att = motion.attitude
-                var attYaw:CGFloat=0
-                var attRoll:CGFloat=0
-                var attPitch:CGFloat=0
-                let d=self.formatter.string(from: currentDate as Date)
-                var mylist=[String:Any]()
                 
-                attYaw=CGFloat(-att.yaw * 2 / M_PI) * 90
-                attRoll=CGFloat(-att.roll * 2 / M_PI) * 90
-                attPitch=CGFloat(-att.pitch * 2 / M_PI) * 90
-                af=abs(sqrt(pow(acc.x,2)+pow(acc.y,2)+pow(acc.z,2)))
-                aw=abs(sqrt(pow(gyro.x,2)+pow(gyro.y,2)+pow(gyro.z,2)))
-                mylist["Time"]=d
-                mylist["attYaw"]=attYaw
-                mylist["attRoll"]=attRoll
-                mylist["attPitch"]=attPitch
-                mylist["af"]=af
-                mylist["aw"]=aw
-                mylist["action"]=self.action
-                self.mydata[String(count)]=mylist
-                count += 1
-                if(self.mydata.count>=100){
-                    count=0
-                    self.PostData()
-                }
+                self.d=self.formatter.string(from: currentDate as Date)
+                
+                self.attYaw=CGFloat(-att.yaw * 2 / M_PI) * 90
+                self.attRoll=CGFloat(-att.roll * 2 / M_PI) * 90
+                self.attPitch=CGFloat(-att.pitch * 2 / M_PI) * 90
+                self.af=abs(sqrt(pow(acc.x,2)+pow(acc.y,2)+pow(acc.z,2)))
+                self.aw=abs(sqrt(pow(gyro.x,2)+pow(gyro.y,2)+pow(gyro.z,2)))
+                
             }
         }
+        myTimer = Timer.scheduledTimer(timeInterval: 0.5,
+                                       target: self,
+                                       selector: #selector(self.UpdateData),
+                                       userInfo: nil,
+                                       repeats: true)
     }
     @IBAction func btnAction(_ sender: Any) {
         if(btn.currentTitle=="靜止"){
@@ -75,8 +68,26 @@ class ViewController: UIViewController {
         }
     }
     
+    func UpdateData() {
+        var mylist=[String:Any]()
+        mylist["Time"]=d
+        mylist["attYaw"]=attYaw
+        mylist["attRoll"]=attRoll
+        mylist["attPitch"]=attPitch
+        mylist["af"]=af
+        mylist["aw"]=aw
+        mylist["action"]=self.action
+        self.mydata[String(count)]=mylist
+        mylist=[:]
+        count += 1
+        if(self.mydata.count>=10){
+            count=0
+            self.PostData()
+        }
+    }
+    
     func PostData(){
-        let urlstr="http://120.119.80.94:9487/"
+        let urlstr="http://120.119.80.94/pedtac/php/insertaction.php"
         let url = URL(string: urlstr)
         let jsonData = try? JSONSerialization.data(withJSONObject: mydata)
         var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
